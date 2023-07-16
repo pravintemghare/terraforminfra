@@ -137,6 +137,3 @@ resource "aws_instance" "web1" {
 
 
 ###### outputs #####
-output instance_private_key {
-    value = local_file.ec2keyprivate.content
-}
