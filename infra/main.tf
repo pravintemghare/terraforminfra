@@ -52,7 +52,7 @@ resource "tls_private_key" "ec2key" {
 }
 
 resource "local_file" "ec2keyprivate" {
-    content = "tls_private_key.ec2key.private_key_pem"
+    content = tls_private_key.ec2key.private_key_pem
     filename = "ec2key.pem"
 }
 
