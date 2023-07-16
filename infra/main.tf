@@ -46,6 +46,20 @@ data "aws_region" "current" {}
 
 
 ## Resources defined
+## Local resources
+resource "tls_private_key" "ec2key" {
+    algorithm = "RSA"
+}
+
+resource "local_file" "ec2keyprivate" {
+    content = "tls_private_key.ec2key.private_key_pem"
+    filename = "ec2key.pem"
+}
+
+resource "aws_key_pair" "ec2instancekey" {
+    key_name = "ec2key"
+    public_key = tls_private_key.ec2key.public_key_openssh
+}
 resource "aws_security_group" "ec2_sg" {
     name        = "test-sg"
     description = "test ec2 security group"
@@ -112,10 +126,17 @@ resource "aws_instance" "web1" {
     vpc_security_group_ids = [aws_security_group.ec2_sg.id]
     subnet_id              = var.subnet_id
     iam_instance_profile   = aws_iam_instance_profile.EC2InstanceProfile.name
+    key_name = aws_key_pair.ec2instancekey.key_name
     root_block_device {  
         volume_size = var.disk_size
     }
     tags = {
         Name = var.server_name
     }    
+}
+
+
+###### outputs #####
+output instance_private_key {
+    value = local_file.ec2keyprivate.content
 }
