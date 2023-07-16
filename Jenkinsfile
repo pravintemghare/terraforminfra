@@ -21,7 +21,7 @@ pipeline {
 
         stage('Terraform plan') {
             steps {
-                dir('infras'){
+                dir('infra'){
                 sh ('terraform plan')
                 }
             }
