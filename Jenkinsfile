@@ -35,18 +35,5 @@ pipeline {
                 }
             }
         }
-
-        stage('Configure Server') {
-            steps {
-                when {
-                    expression {
-                        return params.action == 'destroy'
-                    }
-                }
-                steps {
-                    echo "Terraform action complete."
-                }
-            }
-        }
     }
 }        
