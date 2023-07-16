@@ -35,5 +35,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Configure Server') {
+            steps {
+                script {
+                    if ($action == destroy) {
+                        echo "Terraform action complete"
+                        exit 0
+                    } else {
+                        echo "Configure Server with Ansible"
+                    }
+                }
+            }
+        }
     }
 }        
