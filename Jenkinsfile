@@ -13,15 +13,15 @@ pipeline {
 
         stage('Terraform init') {
             steps {
-                dir('infrastructure'){
-                sh ('terraform init')
+                dir('infra'){
+                sh ('terraform init -reconfigure')
                 }
             }
         }
 
         stage('Terraform plan') {
             steps {
-                dir('infrastructure'){
+                dir('infras'){
                 sh ('terraform plan')
                 }
             }
@@ -30,7 +30,7 @@ pipeline {
         stage('Terraform action') {
             steps {
                 echo "Terraform action is --> ${action}"
-                dir('infrastructure'){
+                dir('infra'){
                 sh ('terraform ${action} --auto-approve')
                 }
             }
