@@ -39,7 +39,7 @@ pipeline {
         stage('Configure Server') {
             steps {
                 script {
-                    if (${action} == destroy) {
+                    if (${action} == 'destroy') {
                         echo "Terraform action complete"
                         exit 0
                     } else {
