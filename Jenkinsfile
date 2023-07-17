@@ -36,7 +36,7 @@ pipeline {
             }
         } */
 
-        stage('Test if')
+        stage('Test if') {
             steps {
                 script {
                     if (param.action == destroy) {
@@ -45,7 +45,9 @@ pipeline {
                         echo "Ansible"
                     }
                 }
-            }
+            }            
+        }
+
 
     }
 }        
