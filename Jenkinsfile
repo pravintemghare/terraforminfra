@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-        stage('Terraform init') {
+/*        stage('Terraform init') {
             steps {
                 dir('infra'){
                 sh ('terraform init -reconfigure')
@@ -34,6 +34,18 @@ pipeline {
                 sh ('terraform ${action} --auto-approve')
                 }
             }
-        }
+        } */
+
+        stage('Test if')
+            steps {
+                script {
+                    if (param.action == destroy) {
+                        echo "Destroy Infra"
+                    } else {
+                        echo "Ansible"
+                    }
+                }
+            }
+
     }
 }        
