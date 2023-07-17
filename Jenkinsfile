@@ -35,8 +35,8 @@ pipeline {
                         echo "Destroying infrastructure..."
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
-                            sh ('exit 0')
                         }
+                        return
                     } else {
                         echo "Terraform action is --> ${action}"
                         dir('infra'){
