@@ -36,7 +36,7 @@ pipeline {
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
                         }
-                        currentBuild.result = 'SUCCESS'
+                        currentBuild.result = 'ABORTED'
                         return
                     } else {
                         echo "Terraform action is --> ${action}"
