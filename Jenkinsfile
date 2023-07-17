@@ -36,7 +36,7 @@ pipeline {
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
                         }
-                        currentBuild.result = 'ABORTED'
+                        currentBuild.result = 'SUCCESS'
                         return
                     } else {
                         echo "Terraform action is --> ${action}"
@@ -47,11 +47,8 @@ pipeline {
                 }
 
             }
-        }
-
-        stage('Configure Server') {
             steps {
-                echo "Configure Ansible"
+                echo "Ansible"
             }
         }
 
