@@ -39,7 +39,7 @@ pipeline {
         stage('Test if') {
             steps {
                 script {
-                    if (param.action == destroy) {
+                    if (params.action == destroy) {
                         echo "Destroy Infra"
                     } else {
                         echo "Ansible"
