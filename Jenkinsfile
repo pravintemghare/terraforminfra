@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-/*        stage('Terraform init') {
+       stage('Terraform init') {
             steps {
                 dir('infra'){
                 sh ('terraform init -reconfigure')
@@ -27,27 +27,32 @@ pipeline {
             }
         }        
         
-        stage('Terraform action') {
-            steps {
-                echo "Terraform action is --> ${action}"
-                dir('infra'){
-                sh ('terraform ${action} --auto-approve')
-                }
-            }
-        } */
-
-        stage('Test if') {
+        stage('Infrastructure Deploy') {
             steps {
                 script {
                     if (params.action == 'destroy') {
-                        echo "Destroy Infra"
+                        echo "Terraform action is --> ${action}"                        
+                        echo "Destroying infrastructure..."
+                        dir('infra'){
+                            sh ('terraform ${action} --auto-approve')
+                            exit 0
+                        }
                     } else {
-                        echo "Ansible"
+                        echo "Terraform action is --> ${action}"
+                        dir('infra'){
+                            sh ('terraform ${action} --auto-approve')
                     }
+                    }                    
                 }
-            }            
+
+            }
         }
 
+        stage('Configure Server') {
+            steps {
+                echo "Configure Ansible"
+            }
+        }
 
     }
 }        
