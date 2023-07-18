@@ -36,7 +36,7 @@
           login_user: "dbuser"
           login_password: "dbpassword"
           login_unix_socket: /var/lib/mysql/mysql.sock
-          target: "/tmp/db_script.sql"
+          target: "config/db_script.sql"
         when: flag_file_status.stat.exists == false
 
       - name: "Create flag file"
