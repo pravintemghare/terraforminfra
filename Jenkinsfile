@@ -50,6 +50,7 @@ pipeline {
         }
 
         stage('Ansible') {
+            when { expression { params.action == 'apply' } }
             steps {
                 echo "Test Ansible"
             }
