@@ -137,6 +137,10 @@ resource "aws_instance" "web1" {
 
 
 ###### outputs #####
+
+output "ec2_instance_id" {
+    value = aws_instance.web1.id
+}
 output "ec2_public_ip" {
     value = aws_instance.web1.public_ip
 }
