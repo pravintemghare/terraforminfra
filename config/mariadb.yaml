@@ -1,7 +1,7 @@
 
 ---
   - name: "Install & Configure Maria DB"
-    hosts: web
+    hosts: db
     become: yes
     tasks:
       - name: "Install Maria DB"
