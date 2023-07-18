@@ -30,27 +30,28 @@ pipeline {
         stage('Infrastructure Deploy') {
             steps {
                 script {
-                    if (params.action == 'destroy') {
+                    if (params.action == 'apply') {
                         echo "Terraform action is --> ${action}"                        
-                        echo "Destroying infrastructure..."
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
                         }
-                        currentBuild.result = 'SUCCESS'
-                        return
                     } else {
                         echo "Terraform action is --> ${action}"
+                        echo "Destroying infrastructure..."                        
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
-                    }
+                        }
+                        exit 0;
                     }                    
                 }
+            }
 
-            }
-            steps {
-                echo "Ansible"
-            }
         }
 
-    }
-}        
+        stage('Ansible') {
+            steps {
+                echo "Test Ansible"
+            }
+        }
+    }        
+}
