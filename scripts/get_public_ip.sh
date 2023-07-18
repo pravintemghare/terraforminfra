@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../infra
+cd infra
 INSTANCE_ID=$(terraform output -raw ec2_instance_id)
 PUBLIC_IP=$(terraform output -raw ec2_public_ip)
 

@@ -59,7 +59,9 @@ pipeline {
         stage('Ansible') {
             when { expression { params.action == 'apply' } }
             steps {
-                echo "Test Ansible"
+                echo "Configuring Application Server"
+                echo "Running Ansible Playbook"
+                ansiblePlaybook become: true, extras: '--private-key infra/ec2key.pem', installation: 'ansible', inventory: 'config/hosts', playbook: 'config/nginx.yaml'
             }
         }
     }        
