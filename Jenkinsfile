@@ -41,7 +41,7 @@ pipeline {
                         dir('infra'){
                             sh ('terraform ${action} --auto-approve')
                         }
-                        exit 0;
+                        return
                     }                    
                 }
             }
