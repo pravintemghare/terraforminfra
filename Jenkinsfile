@@ -11,7 +11,7 @@ pipeline {
             }
         }
 
-       stage('Terraform init') {
+/*       stage('Terraform init') {
             steps {
                 dir('infra'){
                 sh ('terraform init -reconfigure')
@@ -25,22 +25,22 @@ pipeline {
                 sh ('terraform plan')
                 }
             }
-        }        
+        }     */   
         
         stage('Infrastructure Deploy') {
             steps {
                 script {
                     if (params.action == 'apply') {
                         echo "Terraform action is --> ${action}"                        
-                        dir('infra'){
+/*                        dir('infra'){
                             sh ('terraform ${action} --auto-approve')
-                        }
+                        } */
                     } else {
                         echo "Terraform action is --> ${action}"
                         echo "Destroying infrastructure..."                        
-                        dir('infra'){
+/*                        dir('infra'){
                             sh ('terraform ${action} --auto-approve')
-                        }
+                        } */
                         return
                     }                    
                 }
