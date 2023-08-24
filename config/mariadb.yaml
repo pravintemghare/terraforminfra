@@ -33,10 +33,10 @@
         mysql_db:
           state: import
           name: "testdb"
-          login_user: "dbuser"
-          login_password: "dbpassword"
+          login_user: "testjava"
+          login_password: "testjava"
           login_unix_socket: /var/lib/mysql/mysql.sock
-          target: "config/db_script.sql"
+          target: "/tmp/db_script.sql"
         when: flag_file_status.stat.exists == false
 
       - name: "Create flag file"
