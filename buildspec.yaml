@@ -4,7 +4,7 @@ phases:
     install:
       commands:
         - echo "Install Dependencies"
-        - yum -y install update
+        - yum -y update
         - echo "Install Terraform on build server"
         - yum install -y yum-utils shadow-utils
         - yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
